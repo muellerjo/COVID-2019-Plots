@@ -15,7 +15,7 @@ germany <- DATALOG[DATALOG$country == "Germany" |
                    ,]
 #germany
 
-ggplot(germany, aes(x=days1, y=X..Confirmed, group=country, color=country))+
+ggplot(germany, aes(x=days1, y=PercentOfPopulationConfirmed, group=country, color=country))+
   geom_line(aes())+ labs(title= "COVID-2019",
                          subtitle = "Confirmed cases in percent of population",
                          y="% of population", 
