@@ -2,7 +2,7 @@ library(ggplot2)
 library(scales)
 library(reshape2)
 
-DATALOG <- read.csv("C:/Users/Mueller/Dropbox/Privat-Hobby/IT/GitHubRepos/COVID-2019-Plots/03_complete-data-pop-days100.CSV")
+DATALOG <- read.csv("C:/Users/Mueller/Dropbox/Privat-Hobby/IT/GitHubRepos/COVID-2019-Plots/01_ETLOutput-CSV/03_complete-data-pop-days100.CSV")
 
 CORONA <- DATALOG[DATALOG$country == "Germany" |
                      DATALOG$country == "Italy"| 

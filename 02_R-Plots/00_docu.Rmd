@@ -1,0 +1,70 @@
+---
+title: "COVID-2019"
+author: "Jonas Müller"
+date: "15 3 2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Mortality
+
+```{r mortality, echo=TRUE}
+
+library(ggplot2)
+library(scales)
+library(reshape2)
+
+# Setting files location as home location
+thisdir <- dirname(parent.frame(2)$ofile)
+setwd(thisdir)
+
+#Reading CSV
+DATALOG <- read.csv("../01_ETLOutput-CSV/03_complete-data-pop-days100.CSV")
+
+
+germany <- DATALOG[DATALOG$country == "Germany" |
+                     DATALOG$country == "Italy"| 
+                     DATALOG$country == "Spain"| 
+                     DATALOG$country == "United Kingdom"| 
+                     DATALOG$country == "US"|
+                     DATALOG$country == "Switzerland"
+                   ,]
+#germany
+
+ggplot(germany, aes(x=days100, 
+                    y=MortalityPercent, 
+                    group=country, 
+                    color=country))+
+  geom_line(aes())+
+  labs(title= "COVID-2019 | Mortality",
+       #subtitle = "Confirmed cases in percent of population since 100 confirmed case",
+       y="% Mortality", 
+       x = "Days since 100 confirmed case",
+       caption="@muellertag \n Data Source: https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data")
+
+```
+
+Its ist also possible
