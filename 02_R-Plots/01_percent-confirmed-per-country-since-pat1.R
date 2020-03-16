@@ -2,7 +2,7 @@ library(ggplot2)
 library(scales)
 library(reshape2)
 
-DATALOG <- read.csv("C:/Users/Mueller/Dropbox/Privat-Hobby/IT/GitHubRepos/COVID-2019-Plots/03_complete-data-pop-days1.CSV")
+DATALOG <- read.csv("../01_ETLOutput-CSV/03_complete-data-pop-days1.CSV")
 
 #DATALOG$x..Confirmed <- (DATALOG$Confirmed / (DATALOG$.pop2020*1000))*100
 

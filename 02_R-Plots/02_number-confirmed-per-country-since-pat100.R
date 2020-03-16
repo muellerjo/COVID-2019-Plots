@@ -15,11 +15,11 @@ germany <- DATALOG[DATALOG$country == "Germany" |
                    ,]
 #germany
 
-ggplot(germany, aes(x=days100, y=PercentOfPopulationConfirmedDecimal, group=country, color=country))+
-  scale_y_continuous(labels = percent)+
-  #scale_y_continuous()+
+ggplot(germany, aes(x=days100, y=Confirmed, group=country, color=country))+
+  #scale_y_continuous(trans='log2')+
   geom_line(aes())+ labs(title= "COVID-2019 | Confirmed",
-                         y="% of population", 
+                         #subtitle = "Confirmed cases in percent of population since 100 confirmed case",
+                         y="# of Cases", 
                          x = "Days since 100 confirmed case",
                          caption="@muellertag \n Data Source: https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data")
 
@@ -27,7 +27,7 @@ ggplot(germany, aes(x=days100, y=PercentOfPopulationConfirmedDecimal, group=coun
 #Plot exportieren--------------------------------------------------------------
 ggsave(
   #paste( "plot-export/",Sys.Date(),"-03_mortality.pdf", sep=""),
-  paste('plot-export/confirmed-percent-since-pat-100/DINa4/',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-percent.pdf",sep=""),
+  paste('plot-export/confirmed-number-since-pat-100/DINa4/',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-number.pdf",sep=""),
   plot = last_plot(),
   device = NULL,
   path = NULL,
@@ -40,7 +40,7 @@ ggsave(
 #Plot exportieren--------------------------------------------------------------
 ggsave(
   #paste( "plot-export/",Sys.Date(),"-03_mortality.pdf", sep=""),
-  paste('plot-export/confirmed-percent-since-pat-100/100x50/',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-number.pdf",sep=""),
+  paste('plot-export/confirmed-number-since-pat-100/500x500/',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-number.pdf",sep=""),
   plot = last_plot(),
   device = NULL,
   path = NULL,

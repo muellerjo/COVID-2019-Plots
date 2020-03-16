@@ -23,7 +23,13 @@ data = melt(CORONA,id.vars=c("date","country","days100"),
             )
 
 data$valuenum <- as.numeric(data$value)
+
+#Leztes Datum der Datensätze in der Variable lastsave speichern
 #data$date <- as.POSIXct(data$datetime,format="%Y-%m-%d",tz=Sys.timezone())
+data$date2<-as.Date(data$date)
+lastdate <- max(data$date2)
+
+
 
 #Save the Plot as PDF-File
 #filename=sys.date()
@@ -56,14 +62,16 @@ ggplot(subset(data, variable %in% c("Confirmed",
                                    vjust = 0.5),
         strip.placement = "outside", legend.position="top")+
   ylab(NULL)+
-  labs(title="COVID-2019", 
-                  subtitle="X-Axis in days since 100th confirmed case", 
+  labs(title="COVID-2019 | Wrap Plot", 
+                  subtitle=paste("X-Axis in days since 100th confirmed case \nLast dataset:",lastdate), 
                   caption="@muellertag\n
        Data Source: github.com/CSSEGISandData/COVID-19", 
                   x="Days since 100th confirmed case")
 
+#Plot exportieren--------------------------------------------------------------
 ggsave(
-  paste( "plot-export/",Sys.Date(),"-05_melt2grid.pdf", sep=""),
+  #paste( "plot-export/",Sys.Date(),"-05_melt2grid.pdf", sep=""),
+  paste('plot-export/',lastdate,'-savedat-',Sys.Date(),"-05_melt2grid.pdf",sep=""),
   plot = last_plot(),
   device = NULL,
   path = NULL,
@@ -72,7 +80,4 @@ ggsave(
   dpi = 300,
   limitsize = TRUE
 )
-# Step 3: Run dev.off() to create the file!
-#dev.off()
 
-#pdf()

@@ -16,10 +16,11 @@ germany <- DATALOG[DATALOG$country == "Germany" |
 #germany
 
 ggplot(germany, aes(x=days100, y=PercentOfPopulationConfirmedDecimal, group=country, color=country))+
-  scale_y_continuous(labels = percent)+
+  scale_y_continuous(trans='log2',labels = percent)+
   #scale_y_continuous()+
   geom_line(aes())+ labs(title= "COVID-2019 | Confirmed",
-                         y="% of population", 
+                         subtitle = "Logarithmic y-axis (log2)",
+                         y="log2 % of population", 
                          x = "Days since 100 confirmed case",
                          caption="@muellertag \n Data Source: https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data")
 
@@ -27,25 +28,12 @@ ggplot(germany, aes(x=days100, y=PercentOfPopulationConfirmedDecimal, group=coun
 #Plot exportieren--------------------------------------------------------------
 ggsave(
   #paste( "plot-export/",Sys.Date(),"-03_mortality.pdf", sep=""),
-  paste('plot-export/confirmed-percent-since-pat-100/DINa4/',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-percent.pdf",sep=""),
+  paste('plot-export/confirmed-percent-log2/',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-percent-log2.pdf",sep=""),
   plot = last_plot(),
   device = NULL,
   path = NULL,
   scale = 1,
   width = 297, height = 210, units = "mm",
-  dpi = 300,
-  limitsize = TRUE
-)
-
-#Plot exportieren--------------------------------------------------------------
-ggsave(
-  #paste( "plot-export/",Sys.Date(),"-03_mortality.pdf", sep=""),
-  paste('plot-export/confirmed-percent-since-pat-100/100x50/',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-number.pdf",sep=""),
-  plot = last_plot(),
-  device = NULL,
-  path = NULL,
-  scale = 2,
-  width = 100, height = 50, units = "mm",
   dpi = 300,
   limitsize = TRUE
 )
