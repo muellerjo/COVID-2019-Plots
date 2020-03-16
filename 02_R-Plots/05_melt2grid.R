@@ -2,7 +2,13 @@ library(ggplot2)
 library(scales)
 library(reshape2)
 
-DATALOG <- read.csv("C:/Users/Mueller/Dropbox/Privat-Hobby/IT/GitHubRepos/COVID-2019-Plots/01_ETLOutput-CSV/03_complete-data-pop-days100.CSV")
+# Setting files location as home location
+this.dir <- dirname(parent.frame(2)$ofile)
+setwd(this.dir)
+
+#Reading CSV
+DATALOG <- read.csv("../01_ETLOutput-CSV/03_complete-data-pop-days100.CSV")
+
 
 CORONA <- DATALOG[DATALOG$country == "Germany" |
                      DATALOG$country == "Italy"| 
@@ -18,6 +24,15 @@ data = melt(CORONA,id.vars=c("date","country","days100"),
 
 data$valuenum <- as.numeric(data$value)
 #data$date <- as.POSIXct(data$datetime,format="%Y-%m-%d",tz=Sys.timezone())
+
+#Save the Plot as PDF-File
+#filename=sys.date()
+
+#pdf(file =paste( "plot-export/",Sys.Date(),"-05_melt2grid.pdf", sep=""),   # The directory you want to save the file in
+#    width = 4, # The width of the plot in inches
+#    height = 4,
+#    paper = 'a4',
+#    ) # The height of the plot in inches
 
 
 ggplot(subset(data, variable %in% c("Confirmed",
@@ -47,3 +62,17 @@ ggplot(subset(data, variable %in% c("Confirmed",
        Data Source: github.com/CSSEGISandData/COVID-19", 
                   x="Days since 100th confirmed case")
 
+ggsave(
+  paste( "plot-export/",Sys.Date(),"-05_melt2grid.pdf", sep=""),
+  plot = last_plot(),
+  device = NULL,
+  path = NULL,
+  scale = 1,
+  width = 210, height = 297, units = "mm",
+  dpi = 300,
+  limitsize = TRUE
+)
+# Step 3: Run dev.off() to create the file!
+#dev.off()
+
+#pdf()
