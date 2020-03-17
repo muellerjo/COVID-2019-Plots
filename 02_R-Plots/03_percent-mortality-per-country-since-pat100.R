@@ -3,8 +3,8 @@ library(scales)
 library(reshape2)
 
 # Setting files location as home location-----------------------------------------
-#this.dir <- dirname(parent.frame(2)$ofile)
-#setwd(this.dir)
+this.dir <- dirname(parent.frame(2)$ofile)
+setwd(this.dir)
 
 #Reading CSV
 DATALOG <- read.csv("../01_ETLOutput-CSV/03_complete-data-pop-days100.CSV")

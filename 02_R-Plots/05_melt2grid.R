@@ -71,7 +71,7 @@ ggplot(subset(data, variable %in% c("Confirmed",
 #Plot exportieren--------------------------------------------------------------
 ggsave(
   #paste( "plot-export/",Sys.Date(),"-05_melt2grid.pdf", sep=""),
-  paste('plot-export/',lastdate,'-savedat-',Sys.Date(),"-05_melt2grid.pdf",sep=""),
+  paste('plot-export/',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-05_melt2grid.pdf",sep=""),
   plot = last_plot(),
   device = NULL,
   path = NULL,
