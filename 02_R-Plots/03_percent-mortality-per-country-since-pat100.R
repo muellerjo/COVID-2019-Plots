@@ -38,7 +38,7 @@ ggplot(germany, aes(x=days100,
                     color=country))+
   geom_line(aes())+
   labs(title= "COVID-2019 | Case Fatality Ratio (CFR)",
-       subtitle = paste("(CFR = No. of Deaths / No. of confirmed cases) \n",'Last dataset:',lastdate),
+       subtitle = paste("(CFR = No. of Deaths / No. of confirmed cases) \n",'Last dataset:',lastdate,sep=""),
        y="CFR [%]", 
        x = "Days since 100 confirmed case",
        caption=paste("@muellertag | Created at ",format(Sys.time(), "%Y-%m-%d_%H-%M"),

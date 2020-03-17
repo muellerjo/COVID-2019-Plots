@@ -9,11 +9,21 @@ setwd(this.dir)
 DATALOG <- read.csv("../01_ETLOutput-CSV/03_complete-data-pop-days100.CSV")
 
 
+
+#Leztes Datum der Datensätze in der Variable lastsave speichern
+#data$date <- as.POSIXct(data$datetime,format="%Y-%m-%d",tz=Sys.timezone())
+DATALOG$date2<-as.Date(DATALOG$date)
+lastdate <- max(DATALOG$date2)
+
+
+
 germany <- DATALOG[DATALOG$country == "Germany" |
                      DATALOG$country == "Italy"| 
                      DATALOG$country == "Spain"| 
                      DATALOG$country == "United Kingdom"| 
                      #DATALOG$country == "France"| 
+                     DATALOG$country == "Japan"|
+                     DATALOG$country == "South Korea"|
                      DATALOG$country == "US"|
                      DATALOG$country == "Switzerland"
                    ,]
