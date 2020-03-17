@@ -9,7 +9,7 @@ germany <- DATALOG[DATALOG$country == "Germany" |
                      DATALOG$country == "Italy"| 
                      DATALOG$country == "Spain"| 
                      DATALOG$country == "United Kingdom"| 
-                     DATALOG$country == "France"| 
+                     #DATALOG$country == "France"| 
                      DATALOG$country == "US"|
                      DATALOG$country == "Switzerland"
                    ,]
@@ -40,7 +40,7 @@ ggsave(
 #Plot exportieren--------------------------------------------------------------
 ggsave(
   #paste( "plot-export/",Sys.Date(),"-03_mortality.pdf", sep=""),
-  paste('plot-export/confirmed-number-since-pat-100/500x500/',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-number.pdf",sep=""),
+  paste('plot-export/confirmed-number-since-pat-100/100x50_',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-number.pdf",sep=""),
   plot = last_plot(),
   device = NULL,
   path = NULL,

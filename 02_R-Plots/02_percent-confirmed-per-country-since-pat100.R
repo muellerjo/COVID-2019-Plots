@@ -13,7 +13,7 @@ germany <- DATALOG[DATALOG$country == "Germany" |
                      DATALOG$country == "Italy"| 
                      DATALOG$country == "Spain"| 
                      DATALOG$country == "United Kingdom"| 
-                     DATALOG$country == "France"| 
+                     #DATALOG$country == "France"| 
                      DATALOG$country == "US"|
                      DATALOG$country == "Switzerland"
                    ,]
@@ -23,6 +23,7 @@ ggplot(germany, aes(x=days100, y=PercentOfPopulationConfirmedDecimal, group=coun
   scale_y_continuous(labels = percent)+
   #scale_y_continuous()+
   geom_line(aes())+ labs(title= "COVID-2019 | Confirmed",
+                         subtitle = paste("Last dataset: ",lastdate),
                          y="% of population", 
                          x = "Days since 100 confirmed case",
                          caption="@muellertag \n Data Source: https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data")

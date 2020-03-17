@@ -2,6 +2,10 @@ library(ggplot2)
 library(scales)
 library(reshape2)
 
+
+this.dir <- dirname(parent.frame(2)$ofile)
+setwd(this.dir)
+
 DATALOG <- read.csv("../01_ETLOutput-CSV/03_complete-data-pop-days100.CSV")
 
 
@@ -9,7 +13,7 @@ germany <- DATALOG[DATALOG$country == "Germany" |
                      DATALOG$country == "Italy"| 
                      DATALOG$country == "Spain"| 
                      DATALOG$country == "United Kingdom"| 
-                     DATALOG$country == "France"| 
+                     #DATALOG$country == "France"| 
                      DATALOG$country == "US"|
                      DATALOG$country == "Switzerland"
                    ,]
@@ -19,7 +23,7 @@ ggplot(germany, aes(x=days100, y=PercentOfPopulationConfirmedDecimal, group=coun
   scale_y_continuous(trans='log2',labels = percent)+
   #scale_y_continuous()+
   geom_line(aes())+ labs(title= "COVID-2019 | Confirmed",
-                         subtitle = "Logarithmic y-axis (log2)",
+                         subtitle = paste("Logarithmic y-axis (log2) | ","Last dataset: ",lastdate),
                          y="log2 % of population", 
                          x = "Days since 100 confirmed case",
                          caption="@muellertag \n Data Source: https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data")
@@ -34,6 +38,19 @@ ggsave(
   path = NULL,
   scale = 1,
   width = 297, height = 210, units = "mm",
+  dpi = 300,
+  limitsize = TRUE
+)
+
+#Plot exportieren--------------------------------------------------------------
+ggsave(
+  #paste( "plot-export/",Sys.Date(),"-03_mortality.pdf", sep=""),
+  paste('plot-export/confirmed-percent-log2/100x50_',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-percent-log2.pdf",sep=""),
+  plot = last_plot(),
+  device = NULL,
+  path = NULL,
+  scale = 2,
+  width = 100, height = 50, units = "mm",
   dpi = 300,
   limitsize = TRUE
 )
