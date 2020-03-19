@@ -21,8 +21,15 @@ germany <- DATALOG[DATALOG$country == "Germany" |
                    ,]
 #germany
 
-ggplot(germany, aes(x=days100, y=PercentOfPopulationConfirmedDecimal, group=country, color=country))+
-  scale_y_continuous(trans='log2',labels = percent)+
+
+#Leztes Datum der Datensätze in der Variable lastsave speichern
+#data$date <- as.POSIXct(data$datetime,format="%Y-%m-%d",tz=Sys.timezone())
+DATALOG$date2<-as.Date(DATALOG$date)
+lastdate <- max(DATALOG$date2)
+
+
+plt_percent_log2<-ggplot(germany, aes(x=days100, y=PercentOfPopulationConfirmedDecimal, group=country, color=country))+
+  scale_y_continuous(trans='log2',labels = scales::percent_format(accuracy = 0.01))+
   #scale_y_continuous()+
   geom_line(aes())+ labs(title= "COVID-2019 | Confirmed",
                          subtitle = paste("Logarithmic y-axis (log2) | ","Last dataset: ",lastdate,sep=""),
@@ -30,6 +37,8 @@ ggplot(germany, aes(x=days100, y=PercentOfPopulationConfirmedDecimal, group=coun
                          x = "Days since 100 confirmed case",
                          caption="@muellertag \n Data Source: https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data")
 
+
+plot(plt_percent_log2)
 
 #Plot exportieren--------------------------------------------------------------
 ggsave(

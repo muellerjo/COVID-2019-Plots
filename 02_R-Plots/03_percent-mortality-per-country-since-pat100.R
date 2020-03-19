@@ -24,25 +24,30 @@ germany <- DATALOG[DATALOG$country == "Germany" |
                      DATALOG$country == "Italy"| 
                      DATALOG$country == "Spain"| 
                      DATALOG$country == "United Kingdom"| 
+                     #DATALOG$country == "France"| 
+                     #DATALOG$country == "Japan"|
+                     #DATALOG$country == "South Korea"|
                      DATALOG$country == "US"|
-                     #DATALOG$country == "France"|
                      DATALOG$country == "Switzerland"
                    ,]
 #germany
 
 
 
-ggplot(germany, aes(x=days100, 
+cfr<-ggplot(germany, aes(x=days100, 
                     y=MortalityPercent, 
                     group=country, 
                     color=country))+
+  #scale_y_continuous(labels = scales::percent_format(accuracy = 0.01))+
   geom_line(aes())+
   labs(title= "COVID-2019 | Case Fatality Ratio (CFR)",
        subtitle = paste("(CFR = No. of Deaths / No. of confirmed cases) \n",'Last dataset:',lastdate,sep=""),
        y="CFR [%]", 
        x = "Days since 100 confirmed case",
-       caption=paste("@muellertag | Created at ",format(Sys.time(), "%Y-%m-%d_%H-%M"),
+       caption=paste("@muellertag | Created at ",format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
        "\n Data Source: https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data"))
+
+plot(cfr)
 
 #Plot exportieren--------------------------------------------------------------
 ggsave(

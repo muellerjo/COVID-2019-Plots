@@ -21,7 +21,7 @@ germany <- DATALOG[DATALOG$country == "Germany" |
 #germany
 
 ggplot(germany, aes(x=days100, y=PercentOfPopulationConfirmedDecimal, group=country, color=country))+
-  scale_y_continuous(trans='log10',labels = percent)+
+  scale_y_continuous(trans='log10',labels = scales::percent_format(accuracy = 0.01))+
   #scale_y_continuous()+
   geom_line(aes())+ labs(title= "COVID-2019 | Confirmed",
                          subtitle =paste("Logarithmic y-axis (log10)\n",'Last dataset:',lastdate,sep=""),
