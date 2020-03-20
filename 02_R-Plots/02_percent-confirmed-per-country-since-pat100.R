@@ -18,19 +18,19 @@ germany <- DATALOG[DATALOG$country == "Germany" |
                      DATALOG$country == "Spain"| 
                      DATALOG$country == "United Kingdom"| 
                      #DATALOG$country == "France"| 
-                     #DATALOG$country == "Japan"|
-                     DATALOG$country == "South Korea"|
-                     DATALOG$country == "US"
+                     DATALOG$country == "Japan"|
+                     DATALOG$country == "South Korea"
+                     #DATALOG$country == "US"
                      #DATALOG$country == "Switzerland"
                    ,]
 
 germany$date2<-as.Date(germany$date)
-germany <- germany[germany$date2 <= '2020-03-18',]
+#germany <- germany[germany$date2 <= '2020-03-18',]
 #germany <- germany[germany$days100 <= 2,]
 #germany
 
 
-#Leztes Datum der Datensätze in der Variable lastsave speichern
+#Leztes Datum der Datens?tze in der Variable lastsave speichern
 #data$date <- as.POSIXct(data$datetime,format="%Y-%m-%d",tz=Sys.timezone())
 
 lastdate <- max(germany$date2)
