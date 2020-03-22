@@ -10,7 +10,7 @@ setwd(this.dir)
 DATALOG <- read.csv("../01_ETLOutput-CSV/03_complete-data-pop-days100.CSV")
 
 
-#Leztes Datum der Datensätze in der Variable lastsave speichern
+#Leztes Datum der Datens?tze in der Variable lastsave speichern
 #data$date <- as.POSIXct(data$datetime,format="%Y-%m-%d",tz=Sys.timezone())
 DATALOG$date2<-as.Date(DATALOG$date)
 lastdate <- max(DATALOG$date2)
@@ -41,7 +41,7 @@ cfr<-ggplot(germany, aes(x=days100,
   #scale_y_continuous(labels = scales::percent_format(accuracy = 0.01))+
   geom_line(aes())+
   labs(title= "COVID-2019 | Case Fatality Ratio (CFR)",
-       subtitle = paste("(CFR = No. of Deaths / No. of confirmed cases) \n",'Last dataset:',lastdate,sep=""),
+       subtitle = paste("(CFR = No. of Deaths / No. of confirmed cases) \n",'Last dataset: ',lastdate,sep=""),
        y="CFR [%]", 
        x = "Days since 100 confirmed case",
        caption=paste("@muellertag | Created at ",format(Sys.time(), "%Y-%m-%d %H:%M:%S"),

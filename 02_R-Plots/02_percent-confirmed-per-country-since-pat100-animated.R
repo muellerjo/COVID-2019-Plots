@@ -10,11 +10,11 @@ library(ggthemes) # Load
 
 theme_set(theme_bw())
 
-#this.dir <- dirname(parent.frame(2)$ofile)
-#setwd(this.dir)
+this.dir <- dirname(parent.frame(2)$ofile)
+setwd(this.dir)
 
 
-DATALOG <- read.csv("01_ETLOutput-CSV/03_complete-data-pop-days100.CSV")
+DATALOG <- read.csv("../01_ETLOutput-CSV/03_complete-data-pop-days100.CSV")
 
 
 data <- DATALOG[DATALOG$country == "Germany" |

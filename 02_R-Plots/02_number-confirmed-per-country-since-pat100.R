@@ -14,11 +14,17 @@ germany <- DATALOG[DATALOG$country == "Germany" |
                      DATALOG$country == "United Kingdom"| 
                      #DATALOG$country == "France"| 
                      DATALOG$country == "US"|
+                     #DATALOG$country == "China"|
+                     #DATALOG$country == "South Korea"|
                      DATALOG$country == "Switzerland"
                    ,]
 #germany
 
-number<-ggplot(germany, aes(x=days100, y=Confirmed, group=country, color=country))+
+number<-ggplot(germany, aes
+               (x=days100, 
+                 y=Confirmed, 
+                 group=country, 
+                 color=country))+
   scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))+
   geom_line(aes())+ labs(title= "COVID-2019 | Number of Confirmed Cases",
                          #subtitle = "Confirmed cases in percent of population since 100 confirmed case",
@@ -29,7 +35,7 @@ number<-ggplot(germany, aes(x=days100, y=Confirmed, group=country, color=country
 
 plot(number)
 
-#Plot exportieren--------------------------------------------------------------
+#Plot exportieren----------------------------------------------------------------------------
 ggsave(
   #paste( "plot-export/",Sys.Date(),"-03_mortality.pdf", sep=""),
   paste('plot-export/confirmed-number-since-pat-100/DINa4/',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-number.pdf",sep=""),
@@ -42,7 +48,7 @@ ggsave(
   limitsize = TRUE
 )
 
-#Plot exportieren--------------------------------------------------------------
+#Plot exportieren---------------------------------------------------------------------------
 ggsave(
   #paste( "plot-export/",Sys.Date(),"-03_mortality.pdf", sep=""),
   paste('plot-export/confirmed-number-since-pat-100/100x50_',lastdate,'-savedat-',format(Sys.time(), "%Y-%m-%d_%H-%M"),"-02_confirmed-number.pdf",sep=""),

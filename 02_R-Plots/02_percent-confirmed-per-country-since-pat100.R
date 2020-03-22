@@ -18,10 +18,10 @@ germany <- DATALOG[DATALOG$country == "Germany" |
                      DATALOG$country == "Spain"| 
                      DATALOG$country == "United Kingdom"| 
                      #DATALOG$country == "France"| 
-                     DATALOG$country == "Japan"|
-                     DATALOG$country == "South Korea"
-                     #DATALOG$country == "US"
-                     #DATALOG$country == "Switzerland"
+                     #DATALOG$country == "Japan"|
+                     #DATALOG$country == "South Korea"
+                     DATALOG$country == "US"|
+                     DATALOG$country == "Switzerland"
                    ,]
 
 germany$date2<-as.Date(germany$date)
